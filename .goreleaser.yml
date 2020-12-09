@@ -3,9 +3,6 @@ env:
   - CGO_ENABLED=1
   - GOFLAGS=-mod=vendor
   - GOPROXY=off
-before:
-  hooks:
-    - ./check.sh
 builds:
   - id: cfssl-linux
     binary: cfssl
@@ -13,13 +10,36 @@ builds:
       - linux
     goarch:
       - amd64
+    main: ./cmd/cfssl
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/musl-gcc
+  - id: cfssl-linux-arm64
+    binary: cfssl
+    goos:
+      - linux
+    goarch:
       - arm64
     main: ./cmd/cfssl
     ldflags:
       - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
       - -linkmode external -extldflags "-static"
     env:
-      - completions/goreleaser.$goarch
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
+  - id: cfssl-windows
+    binary: cfssl
+    env:
+      - CC=x86_64-w64-mingw32-gcc
+      - CXX=x86_64-w64-mingw32-g++
+    goos:
+      - windows
+    goarch:
+      - amd64
+    main: ./cmd/cfssl
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}} 
 archives:
   - format: binary
 release:
