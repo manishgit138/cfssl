@@ -17,7 +17,7 @@ builds:
     env:
       - CC=/usr/bin/musl-gcc
   - id: cfssl-linux-arm64
-    binary: cfssl
+    binary: cfssl-arm64
     goos:
       - linux
     goarch:
@@ -53,7 +53,7 @@ builds:
     env:
       - CC=/usr/bin/musl-gcc
   - id: cfssl-certinfo-linux-arm64
-    binary: cfssl-certinfo
+    binary: cfssl-certinfo-arm64
     goos:
       - linux
     goarch:
@@ -101,7 +101,7 @@ builds:
     env:
       - CC=/usr/bin/musl-gcc
   - id: cfssljson-linux-arm64
-    binary: cfssljson
+    binary: cfssljson-arm64
     goos:
       - linux
     goarch:
@@ -140,7 +140,7 @@ archives:
   - format: binary
 release:
   github:
-    owner: cloudflare
+    owner: Abhisheknishant
     name: cfssl
   prerelease: auto
 changelog:
