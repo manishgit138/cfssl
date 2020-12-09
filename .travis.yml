@@ -10,10 +10,6 @@ matrix:
 # your own fork of the repository to ensure Travis passes before submitting
 # a PR. For instance, you might run:
 # git push myremote branchname:test-branchname
-branches:
-  only:
-    - master
-    - /^test-.*$/
 
 script:
   - make github-release
