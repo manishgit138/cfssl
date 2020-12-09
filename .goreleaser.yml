@@ -26,8 +26,6 @@ builds:
     ldflags:
       - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
       - -linkmode external -extldflags "-static"
-    env:
-      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssl-windows
     binary: cfssl
     env:
