@@ -10,13 +10,24 @@ builds:
       - linux
     goarch:
       - amd64
-      - arm64
     main: ./cmd/cfssl
     ldflags:
       - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-linux
+    binary: cfssl
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: cfssl-bundle-linux
     binary: cfssl-bundle
     goos:
@@ -35,13 +46,24 @@ builds:
       - linux
     goarch:
       - amd64
-      - arm64
     main: ./cmd/cfssl-certinfo
     ldflags:
       - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-certinfo-linux
+    binary: cfssl-certinfo
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-certinfo
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: cfssl-newkey-linux
     binary: cfssl-newkey
     goos:
@@ -72,13 +94,24 @@ builds:
       - linux
     goarch:
       - amd64
-      - arm64
     main: ./cmd/cfssljson
     ldflags:
       - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssljson-linux
+    binary: cfssljson
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssljson
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: mkbundle-linux
     binary: mkbundle
     goos:
