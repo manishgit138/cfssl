@@ -40,6 +40,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-bundle-linux-arm64
+    binary: cfssl-bundle
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-bundle
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: cfssl-certinfo-linux
     binary: cfssl-certinfo
     goos:
@@ -76,6 +88,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-newkey-linux-arm64
+    binary: cfssl-newkey
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-newkey
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: cfssl-scan-linux
     binary: cfssl-scan
     goos:
@@ -88,6 +112,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-scan-linux-arm64
+    binary: cfssl-scan
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-scan
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: cfssljson-linux
     binary: cfssljson
     goos:
@@ -124,6 +160,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: mkbundle-linux-arm64
+    binary: mkbundle
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/mkbundle
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
   - id: multirootca-linux
     binary: multirootca
     goos:
@@ -136,6 +184,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: multirootca-linux-arm64
+    binary: multirootca
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/multirootca
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=aarch64-linux-gnu-gcc
 archives:
   - format: binary
 release:
