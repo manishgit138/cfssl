@@ -65,7 +65,7 @@ snapshot:
 .PHONY: github-release
 github-release:
 	@:$(call check_defined, GITHUB_TOKEN)
-	docker run -e GITHUB_TOKEN=$(GITHUB_TOKEN) --rm  -v $(PWD):/workdir -w /workdir cbroglie/goreleaser-cgo:1.12.12-musl goreleaser --rm-dist
+	docker run -e GITHUB_TOKEN=$(GITHUB_TOKEN) --rm  -v $(PWD):/workdir -w /workdir cbroglie/goreleaser-cgo:1.12.12-musl apt-get install -y gcc-aarch64-linux-gnu && goreleaser --rm-dist
 
 .PHONY: docker-build
 docker-build:
