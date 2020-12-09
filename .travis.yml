@@ -12,6 +12,7 @@ matrix:
 # git push myremote branchname:test-branchname
 
 script:
+  - sudo apt-get install gcc-aarch64-linux-gnu
   - make github-release
 
 env:
