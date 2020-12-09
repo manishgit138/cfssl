@@ -4,41 +4,7 @@ language: go
 matrix:
   include:
     - go: 1.12.x
-    - go: 1.13.x
-    - go: 1.14.x
-    - go: 1.15.x
-    - arch: s390x
-      go: 1.12.x
-    - arch: s390x
-      go: 1.13.x
-    - arch: s390x
-      go: 1.14.x
-    - arch: s390x
-      go: 1.15.x
-    - arch: ppc64le
-      go: 1.12.x
-    - arch: ppc64le
-      go: 1.13.x
-    - arch: ppc64le
-      go: 1.14.x
-    - arch: ppc64le
-      go: 1.15.x
       
-# Install g++-4.8 to support std=c++11 for github.com/google/certificate-transparency/go/merkletree
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
-
-# Used by the certdb tests
-services:
-  - mysql
-  - postgresql
-
 # Only build pull requests, pushes to the master branch, and branches
 # starting with `test-`. This is a convenient way to push branches to
 # your own fork of the repository to ensure Travis passes before submitting
@@ -49,33 +15,8 @@ branches:
     - master
     - /^test-.*$/
 
-before_script:
-  - make bin/golint
-  #Setup postgresql for s390x environment or Power Support environment
-  - if [[ $(uname -m) == 's390x' || $(uname -m) == 'ppc64le' ]]; then
-      sudo apt-get --purge remove postgresql-*;
-      sudo rm -Rf /etc/postgresql /var/lib/postgresql;
-      sudo apt-get update;
-      sudo apt-get install -y postgresql-9.5;
-      sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/9.5/main/pg_hba.conf;
-      sudo service postgresql restart;
-      sudo -u postgres createuser travis;
-    fi  
-  # Setup DBs + run migrations
-  # The sql_mode adjustment is to remove a sql_mode that was added in MySQL 5.7, this mode applies a rule that does:
-  # > The NO_ZERO_DATE mode affects whether the server permits '0000-00-00' as a valid date.
-  # https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date
-  - if [[ $(uname -s) == 'Linux' ]]; then
-      make bin/goose;
-      psql -c 'create database certdb_development;' -U postgres;
-      ./bin/goose -path certdb/pg up;
-      mysql -e 'create database certdb_development;' -u root;
-      mysql -e 'SET global sql_mode = 0;' -u root;
-      ./bin/goose -path certdb/mysql up;
-    fi
-
 script:
-  - ./test.sh
+  - make github-release
 
 env:
   global:
