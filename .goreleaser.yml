@@ -364,6 +364,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: multirootca-linux-arm64
+    binary: multirootca
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/multirootca
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: multirootca-windows
     binary: multirootca
     env:
