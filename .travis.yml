@@ -14,6 +14,7 @@ matrix:
 script:
   #- sudo apt-get install gcc-aarch64-linux-gnu
   #- make github-release
+  - docker login -u sakshi9715 -p Dockersakshi12
   - make release
 
 env:
