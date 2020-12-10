@@ -60,7 +60,7 @@ __check_defined = \
 
 .PHONY: snapshot
 snapshot:
-	docker run --rm  -v $(PWD):/workdir -w /workdir cbroglie/goreleaser-cgo:1.12.12-musl goreleaser --rm-dist --snapshot --skip-publish
+	docker run --rm  -v $(PWD):/workdir -w /workdir sakshi9715/goreleaser-cgo:1.12.12-musl --rm-dist --snapshot --skip-publish
 
 .PHONY: github-release
 github-release:
@@ -69,10 +69,10 @@ github-release:
 
 .PHONY: docker-build
 docker-build:
-	docker build -f Dockerfile -t cfssl/cfssl:$(VERSION) .
+	docker build -f Dockerfile -t sakshi9715/cfssl:$(VERSION) .
 .PHONY: docker-push
 docker-push:
-	docker push cfssl/cfssl:$(VERSION)
+	docker push sakshi9715/cfssl:$(VERSION)
 
 .PHONY: release
 release: github-release docker-build docker-push
