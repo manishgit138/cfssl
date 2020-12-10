@@ -13,7 +13,8 @@ matrix:
 
 script:
   #- sudo apt-get install gcc-aarch64-linux-gnu
-  - make github-release
+  #- make github-release
+  - make release
 
 env:
   global:
