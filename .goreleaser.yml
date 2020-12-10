@@ -28,6 +28,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-linux-arm64
+    binary: cfssl
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssl-windows
     binary: cfssl
     env:
@@ -64,6 +76,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-bundle-linux-arm64
+    binary: cfssl-bundle
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-bundle
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssl-bundle-windows
     binary: cfssl-bundle
     env:
@@ -100,6 +124,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-certinfo-linux-arm64
+    binary: cfssl-certinfo
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-certinfo
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssl-certinfo-windows
     binary: cfssl-certinfo
     env:
@@ -136,6 +172,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-newkey-linux-arm64
+    binary: cfssl-newkey
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-newkey
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssl-newkey-windows
     binary: cfssl-newkey
     env:
@@ -172,6 +220,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssl-scan-linux-arm64
+    binary: cfssl-scan
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssl-scan
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssl-scan-windows
     binary: cfssl-scan
     env:
@@ -208,6 +268,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: cfssljson-linux-arm64
+    binary: cfssljson
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/cfssljson
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: cfssljson-windows
     binary: cfssljson
     env:
@@ -244,6 +316,18 @@ builds:
       - -linkmode external -extldflags "-static"
     env:
       - CC=/usr/bin/musl-gcc
+  - id: mkbundle-linux-arm64
+    binary: mkbundle
+    goos:
+      - linux
+    goarch:
+      - arm64
+    main: ./cmd/mkbundle
+    ldflags:
+      - -s -w -X github.com/cloudflare/cfssl/cli/version.version={{.Version}}
+      - -linkmode external -extldflags "-static"
+    env:
+      - CC=/usr/bin/aarch64-linux-gnu-gcc
   - id: mkbundle-windows
     binary: mkbundle
     env:
@@ -296,7 +380,7 @@ archives:
   - format: binary
 release:
   github:
-    owner: cloudflare
+    owner: Abhisheknishant
     name: cfssl
   prerelease: auto
 changelog:
