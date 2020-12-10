@@ -65,7 +65,7 @@ snapshot:
 .PHONY: github-release
 github-release:
 	@:$(call check_defined, GITHUB_TOKEN)
-	docker run -e GITHUB_TOKEN=$(GITHUB_TOKEN) --rm  -v $(PWD):/workdir -w /workdir sakshi9715/goreleaser-cgo:1.12.12-musl goreleaser --rm-dist
+	docker run -e GITHUB_TOKEN=$(CFSSL_GITHUB_TOKEN) --rm  -v $(PWD):/workdir -w /workdir sakshi9715/goreleaser-cgo:1.12.12-musl goreleaser --rm-dist
 
 .PHONY: docker-build
 docker-build:
